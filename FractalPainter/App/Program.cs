@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using FractalPainting.App.Actions;
+using FractalPainting.App.Fractals;
+using FractalPainting.Infrastructure.Common;
 using FractalPainting.Infrastructure.UiActions;
 using Ninject;
 using Ninject.Extensions.Factory;
@@ -28,6 +30,8 @@ namespace FractalPainting.App
                 kernel.Bind<IUiAction>().To<KochFractalAction>();
                 kernel.Bind<IUiAction>().To<ImageSettingsAction>();
                 kernel.Bind<IUiAction>().To<PaletteSettingsAction>();
+                kernel.Bind<IImageHolder, PictureBoxImageHolder>().To<PictureBoxImageHolder>().InSingletonScope();
+                kernel.Bind<Palette>().ToSelf().InSingletonScope();
 
                 Application.Run(kernel.Get<MainForm>());
             }
