@@ -33,6 +33,8 @@ namespace FractalPainting.App
                 kernel.Bind<IImageHolder, PictureBoxImageHolder>().To<PictureBoxImageHolder>().InSingletonScope();
                 kernel.Bind<Palette>().ToSelf().InSingletonScope();
 
+                kernel.Bind<IDragonPainterFactory>().ToFactory();
+
                 Application.Run(kernel.Get<MainForm>());
             }
             catch (Exception e)
